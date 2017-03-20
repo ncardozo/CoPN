@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,50 +22,49 @@
 @implementation PNContextPlace
 
 @synthesize contextMethods;
+@synthesize activationTimes;
 
 #pragma mark - Instance creation / descrution
 
 - (id) init {
 	if((self = [super init])) {
-		tokens = [[NSMutableArray alloc] init];
-        contextMethods = [[NSMutableArray alloc] init];
+        contextMethods = [NSMutableArray new];
+        activationTimes = [NSMutableArray new];
 	}
 	return self;
 }
 
 - (id) initWithName:(NSString *) newName {
 	if((self = [super initWithName: newName])) {
-        tokens = [[NSMutableArray alloc] init];
-        contextMethods = [[NSMutableArray alloc] init];
+        contextMethods = [NSMutableArray new];
+        activationTimes = [NSMutableArray new];
 	}
 	return self;
 }
 
 
-- (id) initWithName:(NSString *) newName andCapacity: (NSNumber *) newCapacity{
-	self = [super initWithName: newName andCapacity: newCapacity];
-    contextMethods = [[NSMutableArray alloc] init];
+- (id) initWithName:(NSString *) newName andCapacity: (int) newCapacity {
+    if(self = [super initWithName: newName andCapacity: newCapacity]) {
+        contextMethods = [NSMutableArray new];
+        activationTimes = [NSMutableArray new];
+    }
 	return self;
 }
 
-- (SCContext *) copyWithName: (NSString *) nodeName {
+- (PNContextPlace *) copyWithName: (NSString *) nodeName {
 	PNContextPlace *newPlace = [[PNContextPlace alloc] init];
 	//newPlace = [super copy];
 	[newPlace setTokens: [self tokens]];
 	[newPlace setLabel: nodeName];
     [newPlace setContextMethods: contextMethods];
+    [newPlace setActivationTimes:activationTimes];
 	return newPlace;
 }
 
-- (void)dealloc { 
-	[tokens release];
-    [contextMethods release];
-    [super dealloc]; 
-}
 ///------------------------------------------------------------
 /// @name Functional Methods
 ///------------------------------------------------------------
--(void) addMethod:(SCContextMethod *)method {
+-(void) addMethod:(PNContextMethod *)method {
     [contextMethods addObject:method];
 }
 ///------------------------------------------------------------
@@ -78,16 +77,18 @@
     NSMutableString *desc = [NSMutableString stringWithString:@"@ContextPlace "];
     [desc appendString:[super description]];
     [desc appendString: @" - lastActiveAt: "];
-    NSString *numStr = [NSString stringWithFormat:@"%llu - ", [self lastActivationTime]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *numStr = [dateFormatter stringFromDate: [self.activationTimes firstObject]];
     [desc appendString: numStr];
     [desc appendString:@" capacity="];
-    if([capacity isEqualToNumber:[NSNumber numberWithInt: -1]])
+    if(capacity == -1)
         [desc appendString:@" Unbounded"];
     else
-        [desc appendFormat:@" %d",[[self capacity] intValue]];
+        [desc appendFormat:@" %ld",(long)capacity];
     [desc appendString:@"\nMethod definitions: \n"];
-    for (SCContextMethod *method in contextMethods) {
-        [desc appendFormat:@"%@ \n",[method description]];
+    for (PNContextMethod *method in contextMethods) {
+        [desc appendFormat:@"%@ \n", [method description]];
     }
     return desc;
 }
@@ -96,7 +97,7 @@
     int prime = 31;
     NSUInteger result = [super hash];
     //    Then for every primitive you do
-    result = prime * result + [self lastActivationTime];
+    result = prime * result + [[self.activationTimes firstObject] hash];
     return result;
 }
 
@@ -113,7 +114,7 @@
     [newPlace setLastActivationTime: [self lastActivationTime]];
     return (newPlace);
      */
-    return [self retain];
+    return self;
 }
 
 @end
