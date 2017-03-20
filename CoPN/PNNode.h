@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -15,8 +15,11 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #import "PNElement.h"
+
 @class PNENodeView;
+
 /*
  * Class to represent places and transition with their label
  * There can more than one node (transition) with the same label
@@ -25,14 +28,14 @@
 @interface PNNode : PNElement {
 @public
 	NSString *label;	
-    PNENodeView *view;
+    //PNENodeView *view;
 }
 
 /**
  * Non unique label with which elements are tagged
  */
 @property(nonatomic, readwrite, copy) NSString * label;
-@property(atomic, readwrite, weak) PNENodeView *view;
+//@property(atomic, readwrite, weak) PNENodeView *view;
 
 - (id) initWithName: (NSString *) newName;
 

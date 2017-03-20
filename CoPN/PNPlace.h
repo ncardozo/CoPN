@@ -1,6 +1,6 @@
 /**
- Petri Net Kernel. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,7 +16,11 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #import "PNNode.h"
+#import "PNContextManager.h"
+#import "PNToken.h"
+
 
 @class PNToken;
 
@@ -36,7 +40,7 @@
 /// @name Place Data
 ///------------------------------------------------------------
 /** The (possibly) different activations of a place */
-@property(nonatomic, readwrite, retain) NSMutableArray *tokens;
+@property(nonatomic, readwrite, strong) NSMutableArray *tokens;
 /** The bound of the place (a.k.a how many time can it be activated */
 @property(nonatomic, readwrite) NSInteger capacity;
 /** Tells if the place is an inhibiting place or not (it has an outgoing inhibitor arc)*/
@@ -56,7 +60,7 @@
  @param newCapacity The activation bound of the context
  @return The initialized context.
  */
-- (id) initWithName:(NSString *) newName andCapacity: (int) newCapacity;
+- (id) initWithName:(NSString *) contextName andCapacity: (int) newCapacity;
 
 /**
  Creates a copy of the place with the given name
@@ -112,11 +116,6 @@
  Removes a given collection of tokens (deactivates) from the place
  */
 - (void) removeTokens: (NSArray *) tokenSet;
-
-/** Returns the tocken obkect for a given color
- @param color - The color of the needed tocken
- */
-- (PNToken *) getTokenOfColor: (NSNumber *) color;
 
 /**
  Gets the Prepare for activation place of given a place

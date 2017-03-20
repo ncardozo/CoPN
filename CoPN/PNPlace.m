@@ -1,6 +1,6 @@
 /**
- Petri Net Kernel. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,9 +17,8 @@
  */
 
 #import "PNPlace.h"
-#import "SCContextManager.h"
-#import "PNToken.h"
 
+@class PNToken;
 
 @implementation PNPlace
 
@@ -63,11 +62,6 @@
 	return newPlace;
 }
 
-- (void)dealloc { 
-	[tokens release];
-    [super dealloc]; 
-}
-
 ///------------------------------------------------------------
 /// @name Functional Methods
 ///------------------------------------------------------------
@@ -98,7 +92,6 @@
 }
 
 - (void) addToken:(PNToken *)token {
-    [token retain];
     BOOL alreadyColor = NO;
     for (PNToken *tok in tokens) {
         if ([[tok color] isEqualToNumber:[token color]]) {
@@ -111,7 +104,6 @@
         NSArray *addTokens = [NSArray arrayWithObject:token];
         [self addTokens:addTokens];
     }
-    [token release];
 }
 
 - (void) addTokens:(NSArray *)newTokens {
@@ -138,7 +130,7 @@
 }
 
 -(PNPlace *) getPrepareForActivation {
-    for (PNPlace *c in [[SCContextManager sharedContextManager] temporaryPlaces]) {
+    for (PNPlace *c in [[PNContextManager sharedManager] temporaryPlaces]) {
         if ([[c label] hasPrefix:@"PR("] && [[c label] hasSuffix:[self label]])
             return c;
     }
@@ -146,7 +138,7 @@
 }
 
 -(PNPlace *) getPrepareForDeactivation {
-    for(PNPlace *c in [[SCContextManager sharedContextManager] temporaryPlaces]) {
+    for(PNPlace *c in [[PNContextManager sharedManager] temporaryPlaces]) {
         if([[c label] hasPrefix:@"PRN("] && [[c label] hasSuffix:[self label]])
             return c;
     }
@@ -154,7 +146,7 @@
 }
 
 -(PNPlace *) getDeactivationFlag {
-    for(PNPlace *c in [[SCContextManager sharedContextManager] temporaryPlaces]) {
+    for(PNPlace *c in [[PNContextManager sharedManager] temporaryPlaces]) {
         if([[c label] hasPrefix:@"NEG("] && [[c label] hasSuffix:[self label]])
             return c;
     }
@@ -218,7 +210,8 @@
     [newPlace setCapacity:capacity];
     return (newPlace);
      */
-    return [self retain];
+    //return [self retain];
+    return self;
 }
 
 @end

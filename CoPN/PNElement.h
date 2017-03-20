@@ -1,5 +1,5 @@
 /**
- Context Petri Nets. Full Petri net-based Context-oriented programming for embedded devices
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
  Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface PNElement : NSObject {
 @public 
