@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2011  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
