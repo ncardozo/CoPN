@@ -7,14 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83D036B11E7C2B3C008FA5B0 /* CoPN.h in Headers */ = {isa = PBXBuildFile; fileRef = 83D036B01E7C2B3C008FA5B0 /* CoPN.h */; };
-		83D036B31E7C2B3C008FA5B0 /* CoPN.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D036B21E7C2B3C008FA5B0 /* CoPN.m */; };
+		83548CB71E8339B400BB9179 /* PNArcInscription.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CA11E8339B400BB9179 /* PNArcInscription.h */; };
+		83548CB81E8339B400BB9179 /* PNArcInscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CA21E8339B400BB9179 /* PNArcInscription.m */; };
+		83548CB91E8339B400BB9179 /* PNContextPlace.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CA31E8339B400BB9179 /* PNContextPlace.h */; };
+		83548CBA1E8339B400BB9179 /* PNContextPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CA41E8339B400BB9179 /* PNContextPlace.m */; };
+		83548CBB1E8339B400BB9179 /* PNElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CA51E8339B400BB9179 /* PNElement.h */; };
+		83548CBC1E8339B400BB9179 /* PNElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CA61E8339B400BB9179 /* PNElement.m */; };
+		83548CBD1E8339B400BB9179 /* PNExternalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CA71E8339B400BB9179 /* PNExternalTransition.h */; };
+		83548CBE1E8339B400BB9179 /* PNExternalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CA81E8339B400BB9179 /* PNExternalTransition.m */; };
+		83548CBF1E8339B400BB9179 /* PNInternalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CA91E8339B400BB9179 /* PNInternalTransition.h */; };
+		83548CC01E8339B400BB9179 /* PNInternalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CAA1E8339B400BB9179 /* PNInternalTransition.m */; };
+		83548CC11E8339B400BB9179 /* PNMarking.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CAB1E8339B400BB9179 /* PNMarking.h */; };
+		83548CC21E8339B400BB9179 /* PNMarking.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CAC1E8339B400BB9179 /* PNMarking.m */; };
+		83548CC31E8339B400BB9179 /* PNNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CAD1E8339B400BB9179 /* PNNode.h */; };
+		83548CC41E8339B400BB9179 /* PNNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CAE1E8339B400BB9179 /* PNNode.m */; };
+		83548CC51E8339B400BB9179 /* PNPlace.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CAF1E8339B400BB9179 /* PNPlace.h */; };
+		83548CC61E8339B400BB9179 /* PNPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CB01E8339B400BB9179 /* PNPlace.m */; };
+		83548CC71E8339B400BB9179 /* PNTemporaryPlace.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CB11E8339B400BB9179 /* PNTemporaryPlace.h */; };
+		83548CC81E8339B400BB9179 /* PNTemporaryPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CB21E8339B400BB9179 /* PNTemporaryPlace.m */; };
+		83548CC91E8339B400BB9179 /* PNToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CB31E8339B400BB9179 /* PNToken.h */; };
+		83548CCA1E8339B400BB9179 /* PNToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CB41E8339B400BB9179 /* PNToken.m */; };
+		83548CCB1E8339B400BB9179 /* PNTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 83548CB51E8339B400BB9179 /* PNTransition.h */; };
+		83548CCC1E8339B400BB9179 /* PNTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 83548CB61E8339B400BB9179 /* PNTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83548CA11E8339B400BB9179 /* PNArcInscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNArcInscription.h; sourceTree = "<group>"; };
+		83548CA21E8339B400BB9179 /* PNArcInscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNArcInscription.m; sourceTree = "<group>"; };
+		83548CA31E8339B400BB9179 /* PNContextPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNContextPlace.h; sourceTree = "<group>"; };
+		83548CA41E8339B400BB9179 /* PNContextPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNContextPlace.m; sourceTree = "<group>"; };
+		83548CA51E8339B400BB9179 /* PNElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNElement.h; sourceTree = "<group>"; };
+		83548CA61E8339B400BB9179 /* PNElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNElement.m; sourceTree = "<group>"; };
+		83548CA71E8339B400BB9179 /* PNExternalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNExternalTransition.h; sourceTree = "<group>"; };
+		83548CA81E8339B400BB9179 /* PNExternalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNExternalTransition.m; sourceTree = "<group>"; };
+		83548CA91E8339B400BB9179 /* PNInternalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNInternalTransition.h; sourceTree = "<group>"; };
+		83548CAA1E8339B400BB9179 /* PNInternalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNInternalTransition.m; sourceTree = "<group>"; };
+		83548CAB1E8339B400BB9179 /* PNMarking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNMarking.h; sourceTree = "<group>"; };
+		83548CAC1E8339B400BB9179 /* PNMarking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNMarking.m; sourceTree = "<group>"; };
+		83548CAD1E8339B400BB9179 /* PNNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNNode.h; sourceTree = "<group>"; };
+		83548CAE1E8339B400BB9179 /* PNNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNNode.m; sourceTree = "<group>"; };
+		83548CAF1E8339B400BB9179 /* PNPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPlace.h; sourceTree = "<group>"; };
+		83548CB01E8339B400BB9179 /* PNPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPlace.m; sourceTree = "<group>"; };
+		83548CB11E8339B400BB9179 /* PNTemporaryPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTemporaryPlace.h; sourceTree = "<group>"; };
+		83548CB21E8339B400BB9179 /* PNTemporaryPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNTemporaryPlace.m; sourceTree = "<group>"; };
+		83548CB31E8339B400BB9179 /* PNToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNToken.h; sourceTree = "<group>"; };
+		83548CB41E8339B400BB9179 /* PNToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNToken.m; sourceTree = "<group>"; };
+		83548CB51E8339B400BB9179 /* PNTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTransition.h; sourceTree = "<group>"; };
+		83548CB61E8339B400BB9179 /* PNTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNTransition.m; sourceTree = "<group>"; };
 		83D036AD1E7C2B3C008FA5B0 /* libCoPN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCoPN.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		83D036B01E7C2B3C008FA5B0 /* CoPN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoPN.h; sourceTree = "<group>"; };
-		83D036B21E7C2B3C008FA5B0 /* CoPN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoPN.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,8 +87,28 @@
 		83D036AF1E7C2B3C008FA5B0 /* CoPN */ = {
 			isa = PBXGroup;
 			children = (
-				83D036B01E7C2B3C008FA5B0 /* CoPN.h */,
-				83D036B21E7C2B3C008FA5B0 /* CoPN.m */,
+				83548CA11E8339B400BB9179 /* PNArcInscription.h */,
+				83548CA21E8339B400BB9179 /* PNArcInscription.m */,
+				83548CA31E8339B400BB9179 /* PNContextPlace.h */,
+				83548CA41E8339B400BB9179 /* PNContextPlace.m */,
+				83548CA51E8339B400BB9179 /* PNElement.h */,
+				83548CA61E8339B400BB9179 /* PNElement.m */,
+				83548CA71E8339B400BB9179 /* PNExternalTransition.h */,
+				83548CA81E8339B400BB9179 /* PNExternalTransition.m */,
+				83548CA91E8339B400BB9179 /* PNInternalTransition.h */,
+				83548CAA1E8339B400BB9179 /* PNInternalTransition.m */,
+				83548CAB1E8339B400BB9179 /* PNMarking.h */,
+				83548CAC1E8339B400BB9179 /* PNMarking.m */,
+				83548CAD1E8339B400BB9179 /* PNNode.h */,
+				83548CAE1E8339B400BB9179 /* PNNode.m */,
+				83548CAF1E8339B400BB9179 /* PNPlace.h */,
+				83548CB01E8339B400BB9179 /* PNPlace.m */,
+				83548CB11E8339B400BB9179 /* PNTemporaryPlace.h */,
+				83548CB21E8339B400BB9179 /* PNTemporaryPlace.m */,
+				83548CB31E8339B400BB9179 /* PNToken.h */,
+				83548CB41E8339B400BB9179 /* PNToken.m */,
+				83548CB51E8339B400BB9179 /* PNTransition.h */,
+				83548CB61E8339B400BB9179 /* PNTransition.m */,
 			);
 			path = CoPN;
 			sourceTree = "<group>";
@@ -60,7 +120,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D036B11E7C2B3C008FA5B0 /* CoPN.h in Headers */,
+				83548CB71E8339B400BB9179 /* PNArcInscription.h in Headers */,
+				83548CCB1E8339B400BB9179 /* PNTransition.h in Headers */,
+				83548CC51E8339B400BB9179 /* PNPlace.h in Headers */,
+				83548CBB1E8339B400BB9179 /* PNElement.h in Headers */,
+				83548CC31E8339B400BB9179 /* PNNode.h in Headers */,
+				83548CC71E8339B400BB9179 /* PNTemporaryPlace.h in Headers */,
+				83548CBF1E8339B400BB9179 /* PNInternalTransition.h in Headers */,
+				83548CC11E8339B400BB9179 /* PNMarking.h in Headers */,
+				83548CBD1E8339B400BB9179 /* PNExternalTransition.h in Headers */,
+				83548CC91E8339B400BB9179 /* PNToken.h in Headers */,
+				83548CB91E8339B400BB9179 /* PNContextPlace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +191,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D036B31E7C2B3C008FA5B0 /* CoPN.m in Sources */,
+				83548CCA1E8339B400BB9179 /* PNToken.m in Sources */,
+				83548CC21E8339B400BB9179 /* PNMarking.m in Sources */,
+				83548CCC1E8339B400BB9179 /* PNTransition.m in Sources */,
+				83548CC61E8339B400BB9179 /* PNPlace.m in Sources */,
+				83548CBA1E8339B400BB9179 /* PNContextPlace.m in Sources */,
+				83548CBE1E8339B400BB9179 /* PNExternalTransition.m in Sources */,
+				83548CC01E8339B400BB9179 /* PNInternalTransition.m in Sources */,
+				83548CBC1E8339B400BB9179 /* PNElement.m in Sources */,
+				83548CB81E8339B400BB9179 /* PNArcInscription.m in Sources */,
+				83548CC41E8339B400BB9179 /* PNNode.m in Sources */,
+				83548CC81E8339B400BB9179 /* PNTemporaryPlace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +330,7 @@
 				83D036B81E7C2B3C008FA5B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
