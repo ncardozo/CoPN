@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,10 +18,11 @@
 
 #import "PNNode.h"
 #import "PNToken.h"
-#import "SCContext.h"
 #import "PNArcInscription.h"
+#import "PNPlace.h"
+#import "PNContextManager.h" 
 
-@class SCContext;
+@class PNPlace;
 @class PNArcInscription;
 
 /*
@@ -29,7 +30,7 @@
 */ 
 typedef enum {
     EXTERNAL = 0,
-    CLEANING = 1,
+    DISPATCHING = 1,
     INTERNAL = 2
 } PNTransitionType;
 
@@ -39,7 +40,7 @@ typedef enum {
  */
 
 @interface PNTransition : PNNode {
-	NSMutableDictionary *inputs; //<place(SCContext), arity(PNArcInscription)>
+	NSMutableDictionary *inputs; // <place(SCContext), arity(PNArcInscription)>
 	NSMutableDictionary *outputs;
 	BOOL enabled;
     PNTransitionType priority;
@@ -54,14 +55,14 @@ typedef enum {
 @property(nonatomic,readwrite,retain) NSMutableDictionary *outputs;
 /** Variable to tell if the transition is enabled or not */
 @property(nonatomic,readwrite) BOOL enabled;
-/** Priority of the transition: EXTERNAL = 0, CLEANING = 1, or INTERNAL=2 */ 
+/** Priority of the transition: EXTERNAL = 0, DISPATCHING = 1, or INTERNAL=2 */
 @property(nonatomic,readwrite) PNTransitionType priority;
 ///------------------------------------------------------------
 /// @name Initialization & Disposal
 ///------------------------------------------------------------
 /** Initialize a context with a specific name.
- @param transitionName The name of the context to initialize.
- @param trnasitionPriority
+ @param newName The name of the context to initialize.
+ @param newPriority The transition's priority.
  @return The initialized context.
  */
 - (id) initWithName:(NSString *)newName andPriority: (PNTransitionType) newPriority;
@@ -69,22 +70,22 @@ typedef enum {
 /**
  Adds a new dependency from a context for the (de)activation to take place
  */
-- (void) addInput:(PNArcInscription *) newInscription fromPlace: (SCContext *) context;
+- (void) addInput:(PNArcInscription *) newInscription fromPlace: (PNPlace *) context;
 
 /**
  Remove a given dependency from a context to the (de)activation action
  */
-- (void) removeInput: (SCContext *) placeName;
+- (void) removeInput: (PNPlace *) placeName;
 
 /**
  Adds a new dependency to (de)activate the given context
  */
-- (void) addOutput:(PNArcInscription *) newInscription toPlace: (SCContext *) aPlace;
+- (void) addOutput:(PNArcInscription *) newInscription toPlace: (PNPlace *) aPlace;
 
 /**
  Removes the dependency between a (de)activation and the given context
  */
-- (void) removeOutput: (SCContext *) placeName;
+- (void) removeOutput: (PNPlace *) placeName;
 
 /**
  Returns all the dependencies for this action to take place

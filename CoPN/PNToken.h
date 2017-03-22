@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -28,8 +28,8 @@
     NSNumber *color;
 }
 
-@property(nonatomic, readwrite, retain) NSNumber *tValue;
-@property(nonatomic, readwrite, retain) NSNumber *color;
+@property(nonatomic, readwrite, strong) NSNumber *tValue;
+@property(nonatomic, readwrite, strong) NSNumber *color;
 
 -(id) initWithValue: (NSNumber *) aValue andColor: (NSNumber *) aColor;
 -(id) copyWithZone: (NSZone *) zone;

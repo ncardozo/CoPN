@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,15 +16,19 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+#import "PNContextManager.h"
+#import "PNContextPlace.h"
 
-@class SCContext;
+@class PNContextManager;
+@class PNContextPlace;
 
 /*
  * Array of currently marked places
  */
 @interface PNMarking : NSObject {
 	NSMutableArray *activeContexts; 
-    NSMutableArray *systemMarking; 
+    NSMutableArray<PNContextPlace *> *systemMarking;
 }
 
 ///------------------------------------------------------------
@@ -32,7 +36,7 @@
 ///------------------------------------------------------------
 //Array marked places in the Petri net
 @property(nonatomic,retain) NSMutableArray *activeContexts;
-//Current marking to the system (only SCContext accepted here)
+//Current marking to the system (only PNContextPlace accepted here)
 @property(nonatomic,readonly,retain) NSMutableArray *systemMarking;
 
 ///------------------------------------------------------------
@@ -46,12 +50,12 @@
 /**
  Adds a place to the current marking of the Petri net
  */
-- (void) addActiveContextToMarking: (SCContext *) context;
+- (void) addActiveContextToMarking: (PNContextPlace *) context;
 
 /**
  Removes a places from the current marking of the Petri net
  */
-- (void) removeActiveContextFromMarking: (SCContext *) context;
+- (void) removeActiveContextFromMarking: (PNContextPlace *) context;
 
 /**
  sets the systemMarking as the current marking of the Petri net

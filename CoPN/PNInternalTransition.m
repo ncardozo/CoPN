@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  */
 
 #import "PNInternalTransition.h"
-#import "SCContextManager.h"
+#import "PNContextManager.h"
 
 @implementation PNInternalTransition
 
@@ -29,21 +29,14 @@
 
 - (id) initWithName:(NSString *)newName {
     self = [super initWithName:newName];
-    if([newName hasPrefix:@"cl."])
-        [self setPriority:CLEANING];
-    else
-        [self setPriority:INTERNAL];
+    [self setPriority:INTERNAL];
     return self;
-}
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 -(BOOL) checkEnabledWithColor:(NSNumber *)color {
     [super checkEnabledWithColor:color];
     if(enabled)
-        [[SCContextManager sharedContextManager] addInternalTransitionToQueue: self];
+        [[PNContextManager sharedManager] addInternalTransitionToQueue: self];
     return enabled;
 }
 

@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,8 +17,6 @@
  */
 
 #import "PNTransition.h"
-#import "SCContext.h"
-#import "SCContextManager.h"
 
 @implementation PNTransition
 
@@ -29,7 +27,7 @@
 
 - (id) init {
 	if((self = [super init])) {
-        inputs = [NSMutableDictionary dictionary]; //<key (SCContext), value (PNTransitionType type)>
+        inputs = [NSMutableDictionary dictionary]; // <key (SCContext), value (PNTransitionType type)>
 		outputs = [NSMutableDictionary dictionary];	
         enabled = NO;
 	}
@@ -55,41 +53,39 @@
 	return self;
 }
 
-- (void) dealloc {
-    [super dealloc];
-}
-
 ///------------------------------------------------------------
 /// @name Functional Methods
 ///------------------------------------------------------------
-- (void) addInput:(PNArcInscription *) newInscription fromPlace: (SCContext *) context {
-    NSParameterAssert(context);
+- (void) addInput:(PNArcInscription *) newInscription fromPlace: (PNPlace *) input {
+    NSParameterAssert(input);
     NSParameterAssert(newInscription);
-	[[self inputs] setObject:newInscription forKey: context];        
+	//[inputs setObject:newInscription forKey: input];
+    [inputs setObject:newInscription forKey: (id)input];
 }
 
-- (void) removeInput:(SCContext *) context {
+- (void) removeInput:(PNPlace *) context {
 	NSParameterAssert(context);
     [inputs removeObjectForKey:context];
 }
 
-- (void) addOutput:(PNArcInscription *)newInscription toPlace: (SCContext *) context {
+- (void) addOutput:(PNArcInscription *)newInscription toPlace: (PNPlace *) context {
     if ([newInscription iType] == INHIBITOR) {
         @throw ([NSException
                  exceptionWithName:@"InvalidArcInscriptionException"
                  reason:@"It is not posible to have inhibitor arcs for an output"
                  userInfo:nil]);
     } else
-        [[self outputs] setObject:newInscription forKey: context];
+        //[outputs setObject:newInscription forKey: context];
+        [outputs setObject:newInscription forKey: (id)context];
 }
 
-- (void) removeOutput:(SCContext *) context {
+- (void) removeOutput:(PNPlace *) context {
 	[outputs removeObjectForKey:context];
 }
 
 - (NSArray *) normalInputs {
-    NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
-    for(SCContext *c in [inputs allKeys]) {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for(PNPlace *c in [inputs allKeys]) {
         PNArcInscription *ai = [inputs objectForKey:c];
         if([ai iType] == NORMAL) {
             [result addObject:c];
@@ -99,8 +95,8 @@
 }
 
 - (NSArray *) inhibitorInputs {
-    NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
-    for(SCContext *c in [inputs allKeys]) {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for(PNPlace *c in [inputs allKeys]) {
         PNArcInscription *ai = [inputs objectForKey:c];
         if([ai iType] == INHIBITOR) {
             [result addObject:c];
@@ -112,7 +108,7 @@
 - (BOOL) checkEnabledWithColor:(NSNumber *)color {
     enabled = YES;
     if(color == [NSNumber numberWithInt:1]) { //black token
-        for(SCContext* key in [inputs keyEnumerator]){
+        for(PNPlace* key in [inputs keyEnumerator]){
             PNArcInscription *ai = [inputs objectForKey:key]; 
             PNInscriptionType aType = [ai iType]; 		
             if (aType == NORMAL) {
@@ -133,7 +129,7 @@
             }
         }
     } else {
-        for(SCContext* key in [inputs keyEnumerator]){
+        for(PNPlace* key in [inputs keyEnumerator]){
             int blackToken = [[[key getTokenOfColor:[NSNumber numberWithInt:1]] tValue] intValue]; //Black token
             int tokenCount = [[[key getTokenOfColor:color] tValue] intValue];
             PNArcInscription *ai = [inputs objectForKey:key]; 
@@ -148,10 +144,10 @@
         }
     }
     if(enabled) {
-        for(SCContext* key2 in [outputs keyEnumerator]){
+        for(PNPlace* key2 in [outputs keyEnumerator]){
             PNToken *t = [key2 getTokenOfColor:color];
             PNArcInscription *ai = [outputs objectForKey:key2];
-            if(![[key2 capacity] isEqualToNumber:[NSNumber numberWithInt: -1]] && [[t tValue] intValue] + [ai flowFunction] > [[key2 capacity] intValue]) {
+            if(key2.capacity != -1 && [[t tValue] intValue] + [ai flowFunction] > key2.capacity) {
                 enabled = NO;
                 break;
             } 
@@ -163,7 +159,7 @@
 - (void) fireWithColor:(NSNumber *)color {
 	int flow;
     if (color == [NSNumber numberWithInt:1]) { //Black token
-        for(SCContext *inpp in [inputs keyEnumerator]) {
+        for(PNPlace *inpp in [inputs keyEnumerator]) {
             if([outputs objectForKey:inpp] == nil) {
                 PNArcInscription *ai = [inputs objectForKey:inpp];
                 if([ai iType] == NORMAL) {
@@ -178,7 +174,7 @@
             }
         }
     } else {
-        for(SCContext *inpp in [inputs keyEnumerator]) {
+        for(PNPlace *inpp in [inputs keyEnumerator]) {
             if([outputs objectForKey:inpp] == nil) {
                 PNArcInscription *ai = [inputs objectForKey:inpp];
                 if([ai iType] == NORMAL) {
@@ -191,14 +187,14 @@
             }
         }
     }
-    for(SCContext *outp in [outputs keyEnumerator]) {
+    for(PNPlace *outp in [outputs keyEnumerator]) {
         if([inputs objectForKey:outp] == nil || [[inputs objectForKey:outp] iType] ==INHIBITOR) {
             flow = [[outputs objectForKey:outp] flowFunction];
             PNToken *tok = [outp getTokenOfColor:color];
             if(tok != nil) {
                 [tok setTValue:[NSNumber numberWithInt:([[tok tValue] intValue] + flow)]];
             } else {
-                PNToken *tock = [[[PNToken alloc] init] autorelease];
+                PNToken *tock = [[PNToken alloc] init];
                 [tock setTValue:[NSNumber numberWithInt:flow]];
                 [tock setColor:color];
                 [[outp tokens] addObject:tock]; 
@@ -221,7 +217,7 @@
      [desc appendString:@" (disabled) "];      
     
     [desc appendString:@"Inputs("];
-    for (SCContext *p in [[self inputs] allKeys]) {
+    for (PNPlace *p in [[self inputs] allKeys]) {
         [desc appendString:@"<"];
         [desc appendString: [p label]];
         [desc appendString:@", "];
@@ -229,7 +225,7 @@
         [desc appendString:@"> | "];
     }
     [desc appendString:@") - Outputs("];
-    for (SCContext *p in [[self outputs] allKeys]) {
+    for (PNPlace *p in [[self outputs] allKeys]) {
         [desc appendString:@"<"];
         [desc appendString: [p label]];
         [desc appendString:@", "];

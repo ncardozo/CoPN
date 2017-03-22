@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,16 +16,20 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "SCContext.h"
+#import "PNPlace.h"
+#import "PNContextMethod.h"
 
 @class PNToken;
-@class SCContextMethod;
+@class PNContextMethod;
 
-@interface PNContextPlace : SCContext {
+@interface PNContextPlace : PNPlace {
     NSMutableArray *contextMethods;
+    NSMutableArray<NSDate *> *activationTimes;
 }
 /** Variable to hold the method definitions for an specific context */
 @property (nonatomic, readwrite, retain) NSMutableArray *contextMethods;
+/** ordered from newest to oldest. The type of the variables is NSDate */
+@property (nonatomic,readwrite, strong) NSMutableArray *activationTimes;
 
 ///------------------------------------------------------------
 /// @name Initialization & Disposal
@@ -38,13 +42,13 @@
 - (id)initWithName:(NSString *)contextName;
 
 /** Initialize a context with a specific name.
- @param contextName The name of the context to initialize.
+ @param newName The name of the context to initialize.
  @param newCapacity The activation bound of the context
  @return The initialized context.
  */
-- (id) initWithName:(NSString *) newName andCapacity: (NSNumber *) newCapacity;
+- (id) initWithName:(NSString *) newName andCapacity: (int) newCapacity;
 
 /** Adds a context method definition to the context */
-- (void) addMethod: (SCContextMethod *) method;
+- (void) addMethod: (PNContextMethod *) method;
 
 @end

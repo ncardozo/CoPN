@@ -1,6 +1,6 @@
 /**
- Context Petri Nets. Context-oriented programming for mobile devices
- Copyright (C) 2012  Nicolás Cardozo
+ Context Petri Nets. Full Petri net-based Context-oriented programming language for embedded devices
+ Copyright (C) 2017  Nicolás Cardozo
  
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
  */
 
 #import "PNMarking.h"
-#import "SCContext.h"
-#import "SCContextManager.h"
+
+
 
 @implementation PNMarking
 
@@ -33,18 +33,12 @@
     return self;
 }
 
-- (void) dealloc {
-    [activeContexts release];
-    [systemMarking release];
-    [super dealloc];
-}
-
-- (void) addActiveContextToMarking: (SCContext *) context {
+- (void) addActiveContextToMarking: (PNContextPlace *) context {
     NSParameterAssert(context);
     [activeContexts addObject:context];
 }
 
-- (void) removeActiveContextFromMarking: (SCContext *) context {
+- (void) removeActiveContextFromMarking: (PNContextPlace *) context {
     [activeContexts removeObject:context];
 }
 
@@ -60,17 +54,17 @@
 - (void) revertOperation {
     [activeContexts removeAllObjects];
     [activeContexts addObjectsFromArray:systemMarking];
-    for(SCContext *p in [[SCContextManager sharedContextManager] temporaryPlaces]) {
+    for(PNContextPlace *p in [[PNContextManager sharedManager] temporaryPlaces]) {
         [[p tokens] removeAllObjects];
     }
-    [[SCContextManager sharedContextManager] setStable:YES];
+    [[PNContextManager sharedManager] setStable:YES];
 }
 
 -(NSString *) description {
-    NSMutableString *desc = [[NSMutableString alloc] init];
-    for(SCContext *c in systemMarking) {
-        [desc appendString:[c description]];
+    NSMutableString *desc = [NSMutableString new];
+    for(PNContextPlace *p in systemMarking) {
+        [desc appendString:[p description]];
     }
-    return [desc autorelease];
+    return desc;
 }
 @end
